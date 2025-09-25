@@ -30,6 +30,18 @@ export default function Page() {
   ]);
   const [finished, setFinished] = useState(false);
 
+  const selectedGenresString = (
+    selectedGenres.length === 0
+      ? ""
+      : selectedGenres.length === 1
+      ? selectedGenres[0]
+      : selectedGenres.length === 2
+      ? selectedGenres.join(" and ")
+      : selectedGenres.slice(0, -1).join(", ") +
+        ", and " +
+        selectedGenres[selectedGenres.length - 1]
+  ).toLowerCase();
+
   function cryptoRandomId() {
     return Math.random().toString(36).slice(2, 9);
   }
@@ -104,18 +116,13 @@ export default function Page() {
         <section>
           {step === 0 && (
             <div>
-              <AnimatedResponse text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet varius lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam eget lectus in magna fringilla tempor et sed neque. Sed iaculis elit a blandit accumsan. Integer ut tempor elit, lobortis iaculis odio." />
-
-              <label
-                style={{ display: "block", fontWeight: 600, marginBottom: 8 }}
-              >
-                What&apos;s your name?
-              </label>
+              <AnimatedResponse text="I'm looking forward to get to know you!" />
+              <p>What&apos;s your name?</p>
               <Input
                 autoFocus
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Your name"
+                placeholder="Name"
               />
             </div>
           )}
@@ -126,7 +133,6 @@ export default function Page() {
                 text={`Nice to meet you, ${name || "reader"}!`}
               />
               <p>Which genres do you prefer?</p>
-
               <div className="grid grid-cols-3 gap-2">
                 {genreOptions.map((g, i) => (
                   <label
@@ -148,11 +154,11 @@ export default function Page() {
 
           {step === 2 && (
             <div>
-              <label
-                style={{ display: "block", fontWeight: 600, marginBottom: 8 }}
-              >
-                Recent books you&apos;ve read
-              </label>
+              <AnimatedResponse
+                text={`I'll make sure to focus on ${selectedGenresString} books!`}
+              />
+
+              <p>Recent books you&apos;ve read</p>
 
               <div
                 style={{ display: "flex", flexDirection: "column", gap: 12 }}
@@ -244,7 +250,8 @@ export default function Page() {
         </section>
       ) : (
         <section className="flex flex-col gap-4">
-          <h2 style={{ marginTop: 0 }}>Thanks, {name || "reader"}!</h2>
+          <AnimatedResponse text="Those sound like some great choices. Thanks for sharing, and welcome to BookBuddy!" />
+
           <p>Here&apos;s a summary of what you told us:</p>
 
           <div className="border rounded-xl p-4">

@@ -1,17 +1,15 @@
 import { BookHeartIcon } from "lucide-react";
 
 export function AnimatedResponse({ text }: { text: string }) {
-  const processedWords = text
-    .split(" ")
-    .map((word) => word + " ")
-    .flatMap((word) =>
-      word.length > 8
-        ? [
-            word.slice(0, Math.floor(word.length / 2)),
-            word.slice(Math.floor(word.length / 2)),
-          ]
-        : [word]
-    );
+  const processedWords = text.split(" ").map((word) => word + " ");
+  // .flatMap((word) =>
+  //   word.length > 8
+  //     ? [
+  //         word.slice(0, Math.floor(word.length / 2)),
+  //         word.slice(Math.floor(word.length / 2)),
+  //       ]
+  //     : [word]
+  // );
 
   return (
     <div className="border border-cyan-500/50 rounded-xl p-4 flex gap-4 items-center bg-gradient-to-tr from-blue-500/10 to-emerald-500/10 ">
