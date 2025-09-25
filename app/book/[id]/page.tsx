@@ -3,6 +3,7 @@
 import Link from "next/link";
 import OpenLibraryClient from "open-library-client";
 import { Summary } from "./summary";
+import { BookReview } from "./book-review";
 
 export default async function Page({
   params,
@@ -14,7 +15,7 @@ export default async function Page({
   const { data: book } = await client.getWork(id);
 
   return (
-    <div>
+    <main className="flex flex-col gap-4">
       <div className="flex flex-col md:flex-row gap-6">
         <div className="md:w-64 flex-shrink-0">
           {book.covers && book.covers.length > 0 ? (
@@ -123,6 +124,8 @@ export default async function Page({
           </div>
         </div>
       </div>
-    </div>
+
+      <BookReview result={book} />
+    </main>
   );
 }

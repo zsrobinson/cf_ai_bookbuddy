@@ -1,10 +1,11 @@
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { convertToModelMessages, streamText, UIMessage } from "ai";
+import { NextRequest } from "next/server";
 import { createWorkersAI } from "workers-ai-provider";
 
 export const maxDuration = 30;
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   const { messages }: { messages: UIMessage[] } = await req.json();
   const env = getCloudflareContext().env as { AI: Ai };
   const model: keyof AiModels = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
