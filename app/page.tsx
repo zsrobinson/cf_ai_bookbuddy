@@ -2,14 +2,14 @@
 
 import { useChat } from "@ai-sdk/react";
 import { useState } from "react";
-import { AnimatedResponse } from "~/components/animated-response";
+import { AnimatedResponseBox } from "~/components/response-box";
 
 export default function Chat() {
   const [input, setInput] = useState("");
   const { messages, sendMessage } = useChat();
   return (
     <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
-      <AnimatedResponse text="Welcome to BookBuddy!" />
+      <AnimatedResponseBox text="Welcome to BookBuddy!" />
 
       {messages.map((message) => (
         <div key={message.id} className="whitespace-pre-wrap">

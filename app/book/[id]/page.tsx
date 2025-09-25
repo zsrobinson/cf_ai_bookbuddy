@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import OpenLibraryClient from "open-library-client";
+import { Summary } from "./summary";
 
 export default async function Page({
   params,
@@ -44,14 +45,12 @@ export default async function Page({
         <div className="flex-1">
           <h1 className="text-2xl font-bold">{book.title}</h1>
 
-          {/* {book.subtitle && (
-            <h2 className="text-lg  mt-1">{book.subtitle}</h2>
-          )} */}
-
           <p className="italic text-sm mt-2">
             {(book.authors ?? []).map((a) => JSON.stringify(a)).join(", ") ||
               "Unknown author"}
           </p>
+
+          <Summary id={id} />
 
           <div className="mt-4 text-sm space-y-3">
             <div>

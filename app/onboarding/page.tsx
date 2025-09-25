@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatedResponse } from "~/components/animated-response";
+import { AnimatedResponseBox } from "~/components/response-box";
 import { Button } from "~/components/ui/button";
 import { Checkbox } from "~/components/ui/checkbox";
 import { Input } from "~/components/ui/input";
@@ -116,7 +116,7 @@ export default function Page() {
         <section>
           {step === 0 && (
             <div>
-              <AnimatedResponse text="I'm looking forward to get to know you!" />
+              <AnimatedResponseBox text="I'm looking forward to get to know you!" />
               <p>What&apos;s your name?</p>
               <Input
                 autoFocus
@@ -129,7 +129,7 @@ export default function Page() {
 
           {step === 1 && (
             <div className="flex flex-col gap-4">
-              <AnimatedResponse
+              <AnimatedResponseBox
                 text={`Nice to meet you, ${name || "reader"}!`}
               />
               <p>Which genres do you prefer?</p>
@@ -154,7 +154,7 @@ export default function Page() {
 
           {step === 2 && (
             <div>
-              <AnimatedResponse
+              <AnimatedResponseBox
                 text={`I'll make sure to focus on ${selectedGenresString} books!`}
               />
 
@@ -250,7 +250,7 @@ export default function Page() {
         </section>
       ) : (
         <section className="flex flex-col gap-4">
-          <AnimatedResponse text="Those sound like some great choices. Thanks for sharing, and welcome to BookBuddy!" />
+          <AnimatedResponseBox text="Those sound like some great choices. Thanks for sharing, and welcome to BookBuddy!" />
 
           <p>Here&apos;s a summary of what you told us:</p>
 
